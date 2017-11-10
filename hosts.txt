@@ -1,0 +1,2 @@
+"carling.its.sfu.ca","pwd"
+"ns-ecp.its.sfu.ca","ls -l"
