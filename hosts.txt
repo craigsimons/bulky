@@ -1,2 +1,2 @@
-"carling.its.sfu.ca","pwd"
-"ns-ecp.its.sfu.ca","ls -l"
+"ns-ecp2.its.sfu.ca","w*","csimonsa"
+ns-ecp1.its.sfu.ca,"w*","root"
