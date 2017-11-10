@@ -30,13 +30,13 @@ def main():
 		# test if variables in each coc
 		if varCount != len(columns):
 			print "There is a problem with: " + str(line)
-			print "Number of variables in supplied command was " + str(varCount) + " but the line had " + str(columnCount) + " columns"
+			print "Number of variables in supplied command was " + str(varCount) + " but the host entry had " + str(columnCount) + " variable columns!"
 			sys.exit(1)
 
 		if not args.test:
 			ssh(host, user, password, replaceVariables(columns, command))
 		else:
-			printBanner(host, command)
+			printBanner(host, replaceVariables(columns, command))
 
 def replaceVariables(variables, command):
 	"""
