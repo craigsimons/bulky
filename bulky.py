@@ -95,10 +95,10 @@ def getArgs():
 	desc = "Do lots of stuff quickly.\n\n"
 	parser = argparse.ArgumentParser(description=desc, formatter_class=RawTextHelpFormatter)
 	parser.add_argument("-l", "--list", help="Comma separated list of ip addresses or switches to do stuff on.", required=False)
-	parser.add_argument("-f", "--file", help="CSV file hosts and variables. Must be delimited with quotes.", required=False)
-	parser.add_argument("-c", "--command", help="Command to issue", required=False)
-	parser.add_argument("-cf", "--commandfile", help="Command file to load", required=False)
-	parser.add_argument("-t", "--test", help="Run in test mode only without actually connecting to the host.", action="store_true")
+	parser.add_argument("-f", "--file", help="CSV file hosts and variables. Should be delimited with quotes. \nIf variable substitution is being used, the number of columns must exactly match \nthe number of variables for each host.", required=False)
+	parser.add_argument("-c", "--command", help="Command to issue. Use {{integer}} for variable substition.", required=False)
+	parser.add_argument("-cf", "--commandfile", help="Command file to load. Use {{integer}} for variable substition.", required=False)
+	parser.add_argument("-t", "--test", help="Run in test mode without actually connecting to the host.", action="store_true")
 
 	result = parser.parse_args()
 

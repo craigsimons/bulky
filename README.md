@@ -6,7 +6,7 @@ Bulky is an SSH tool intended to push bulk changes to a number of hosts. While t
 
 Assuming a Python 2.x environment, only the [Paramiko](http://www.paramiko.org/) module needs to be installed. This is best done by using the [pip](https://pypi.python.org/pypi/pip) package installer.
 
-### MacOS, Linux
+#### MacOS, Linux
 
 ```bash
 sudo easy_install pip
@@ -15,9 +15,31 @@ sudo pip install paramiko
 
 Then, download the bulky.py file and that's pretty much it.
 
+### Command Line Arguments 
+
+```
+usage: bulky.py [-h] [-l LIST] [-f FILE] [-c COMMAND] [-cf COMMANDFILE] [-t]
+
+Do lots of stuff quickly.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -l LIST, --list LIST  Comma separated list of ip addresses or switches to do stuff on.
+  -f FILE, --file FILE  CSV file hosts and variables. Should be delimited with quotes. 
+                        If variable substitution is being used, the number of columns must exactly match 
+                        the number of variables for each host.
+  -c COMMAND, --command COMMAND
+                        Command to issue. Use {{integer}} for variable substition.
+  -cf COMMANDFILE, --commandfile COMMANDFILE
+                        Command file to load. Use {{integer}} for variable substition.
+  -t, --test            Run in test mode without actually connecting to the host.
+```
+
 ## Instructions
 
-### Simple Use
+**Note:** Under most circumstances, it is recommented the **--test** parameter be used to ensure the commands being sent are correct.
+
+#### Example 1: Basic Use
 
 This example shows how to run a single command to a small number of hosts. 
 
@@ -25,7 +47,7 @@ This example shows how to run a single command to a small number of hosts.
 python bulky.py -l host1.sfu.ca,host2.sfu.ca -c "ls -l"
 ```
 
-### Simple Use (with hosts file)
+#### Example 2: Simple Use with Hosts File
 
 For scenarios with large numbers of hosts, a separate file can be used.
 
@@ -41,7 +63,7 @@ Command:
 python bulky.py -f hosts.txt -c "ls -l"
 ```
 
-### Simple Use (with command file)
+#### Example 3: Simple Use with Command File)
 
 For scenarios with a larger set of commands, a separate input file can be used.
 
@@ -59,9 +81,26 @@ Command:
 python bulky.py -l host1.sfu.ca,host2.sfu.ca -cf commands.txt
 ```
 
-### Advanced Use (Variable Replacement)
+#### Example 4: Advanced Use with Variable Replacement
 
-Bulky allows for simple variable substitution.
+Bulky allows for simple variable substitution. Variables are defined in the command string using the {{integer}} format starting at 0. Variables are defined in the input host file (-f) in CSV format. 
+
+Example file: **commands.txt**
+```
+ls -l {{0}}
+id {{1}}
+```
+
+Example file: **hosts.txt**
+```
+host1.sfu.ca,"w*","root"
+host2.sfu.ca,"a*","root"
+```
+
+Command:
+```bash
+python bulky.py -f hosts.txt -cf commands.txt
+```
 
 ## License
 

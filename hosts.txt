@@ -1,2 +1,2 @@
-"ns-ecp2.its.sfu.ca","w*","csimonsa"
-ns-ecp1.its.sfu.ca,"w*","root"
+ns-ecp1.sfu.ca,"w*","root"
+ns-ecp2.sfu.ca,"a*","root"
